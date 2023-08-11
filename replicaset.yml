@@ -1,0 +1,20 @@
+kind: ReplicaSet            # ReplicaSet is used to maintain a specified number of replicas of a pod running at all times  ( advanced label selectors (support equality-based selector,set-based))                       
+apiVersion: apps/v1                            
+metadata:
+  name: myrs
+spec:
+  replicas: 2                # desired number of replicas for the Pod template
+  selector:                  
+    matchExpressions:        # matching criteria for selecting the pods to be managed by the ReplicaSet.
+      - {key: myname, operator: In, values: [Bhupinder, Bupinder, Bhopendra]}
+      - {key: env, operator: NotIn, values: [production]}
+  template:      
+    metadata:
+      name: testpod7
+      labels:              
+        myname: Bhupinder
+    spec:
+     containers:
+       - name: c00
+         image: ubuntu
+         command: ["/bin/bash", "-c", "while true; do echo Technical-Guftgu; sleep 5 ; done"]

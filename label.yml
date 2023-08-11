@@ -1,0 +1,19 @@
+
+kind: Pod
+apiVersion: v1
+metadata:
+  name: kubePod
+  labels:                 # Subsection defines labels associated with the Pod,used for grouping and selecting Pods.                                  
+    env: development      # Sets the label "env" with the value "development."
+    class: pods           # Sets the label "class" with the value "pods."
+spec:
+    containers:
+       - name: c00
+         image: ubuntu
+         command: ["/bin/bash", "-c", "while true; do echo Hello-Bhupinder; sleep 5 ; done"]
+
+
+
+# kubectl apply -f label.yml
+
+# kubectl get pods --show-labels
